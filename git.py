@@ -24,6 +24,13 @@ print(gitAccount)
 #   1.1 create a file called my_first_file.py `through running [ni my_first_file.py] in the terminal`
 #   1.2 write this into it `This is the content of my first file.`
 
+# we have a check here if the change we made is wrong or we want to undo it before it's staged, we can do so using the command:
+checkoutResult = subprocess.run(
+    ["git", "checkout", "filename"], capture_output=True, text=True
+)
+print(checkoutResult)
+# If there's no issue, then we can stage it if it's correct.
+
 # 2. the staging area (to have git recognize our change/s and start tracking it we need to add it to the staging area)
 stagingResult = subprocess.run(
     ["git", "add", "file-names (in our case the my_first_file.py)"],
@@ -31,6 +38,8 @@ stagingResult = subprocess.run(
     text=True,
 )
 print(stagingResult)
+# On the topic of checking out: (all this checkout is before the change is staged though, what do we do if we stage something we don't want to or didn't intend to)
+# we can unstage our changes by using the git ​reset command.
 
 # 3. the commit change (now that git is tracking our changes and the repo is initialized and the changes we make can be identified back to us because it's configured, now have all the changes into one consistent copy showing )
 commitResult = subprocess.run(
