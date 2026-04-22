@@ -39,8 +39,8 @@ commitResult = subprocess.run(
 print(commitResult)
 
 # now let's make a change to our file by adding a second line
-# add a second line in my_first_file.py, "This is the second content of my first file" and then stash and commit, like we did earlier.
-# 1. running `subprocess.run(["git", "add", "my_first_file.py"], text=True)` -> (adding the untracked to the stash)
+# add a second line in my_first_file.py, "This is the second content of my first file" and then stage and commit, like we did earlier.
+# 1. running `subprocess.run(["git", "add", "my_first_file.py"], text=True)` -> (adding the untracked to the stage)
 # 2. run `subprocess.run(["git", "commit", "-m", "add a second line"], text=True)`
 
 # any time you want to check the tracked and untracked changes you can using `git status`
@@ -55,6 +55,6 @@ print(diffChanges)
 # Now that's some of the basics of git'.
 
 
-# for a tracked file (a file that's been commited before we can skip the stashing stage if we just want to commit all of it)
+# for a tracked file (a file that's been commited before we can skip the staging stage if we just want to commit all of it)
 # but this won't work for a new created file since that's untracked, and this will only work for a file that's been commited before
-# to do that we add the `a-flag` when commiting, 'subprocess.run(["git", "commit", "-a", "-m", "this is the change where i skipped stashing"], text=True)'
+# to do that we add the `a-flag` when commiting, 'subprocess.run(["git", "commit", "-a", "-m", "this is the change where i skipped staging"], text=True)'
