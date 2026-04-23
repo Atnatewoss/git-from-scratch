@@ -13,8 +13,13 @@ class Git:
     # repo name
     repo_name = "new repo"
 
+    # branch name
+    branch_name = "main"
+
     config_git_user = config_git_user(user_email, user_name)
-    initialize_repo = initialize_repo(repo_name)
-    workflows = workflows(workflow_tree=True, staged=True, committed=True)
-    diff = diff()
+    initialize_repo = initialize_repo(repo_name, branch_name="main")
+    workflows = workflows(
+        workflow_tree=True, staged=True, committed=True, branch_name="main"
+    )
+    diff = diff(branch_name="main")
     # branches = branches()
