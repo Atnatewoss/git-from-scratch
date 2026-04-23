@@ -30,6 +30,10 @@ def manage_branch_workflow():
 
     def merge_branch():
         types_of_merges = ["fast forward", "three way merge"]
+        # three way merge: could happen if we create a commit on the main branch after creating another branch
+        # if the changes were made in different files, the git is good to go.
+        # but if they were made in the same file, git will take both of the changes and put them in a result.
+        # but instead if the changes were made on the same part in the same file, git won't know how to merge those changes, and the attempt will result in a merge conflict
         pass
 
 
