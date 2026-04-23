@@ -59,10 +59,11 @@ def manage_branch_workflow(
             "merge": merge_branch,
         }
 
-        if action.lower() == function_mapping[action]:
-            function_mapping[action](new_branch)
+        action_func = action.lower()
+        if action in function_mapping:
+            function_mapping[action_func](new_branch)
         else:
-            response = "This action is not supported!, try following one from the docs"
+            response = "This action is not supported! Please try one of the following: create, delete, change, merge"
             print(response)
             return response
 
