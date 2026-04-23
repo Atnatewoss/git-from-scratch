@@ -3,33 +3,33 @@ import subprocess
 # Pre-requisite: make sure you have git installed
 # check by opening your terminal and typing `git --version`
 
-list_of_commands = [
-    # list all of the commmands used in the tools here, to track them as a check list
-]
 
-list_of_branches = ["main"]
-# default_branch = "main"
+def manage_branch_workflow(
+    default_branch, list_of_branches, current_branch, new_branch, action
+):
 
-
-def manage_branch_workflow(new_branch):
     allowed_actions = [
-        "create branch",  ## from the parameter passed in
-        "delete branch",  ## from the list_of_branches
-        "change branch",  ## from the list_of_branches
-        "merge branch",  ## from the list_of_branches
+        "create branch",  ## from the parameter passed in, needs a branch_name [parameter]
+        "delete branch",  ## from the list_of_branches, needs a branch_name [parameter]
+        "change branch",  ## from the list_of_branches, needs a branch_name [parameter]
+        "merge branch",  ## from the list_of_branches, needs the current_branch, and a branch_name [parameter]
     ]
 
+    # triggered when a branch_name is passed and action is create
     def create_branch(new_branch):
-        if not new_branch:  ## Catches None, empty string "", and empty collections
-            print("No new branch passed!")
-
         list_of_branches.append(new_branch)
+        return new_branch
 
-    def delete_branch():
-        pass
+    # triggered when a branch_name is passed and action is delete
+    def delete_branch(new_branch):
+        branch_to_be_deleted = new_branch
+        list_of_branches.remove(new_branch)
+        return branch_to_be_deleted
 
-    def change_branch():
-        pass
+    # triggered when a branch_name is passed and action is change
+    def change_branch(new_branch):
+        current_branch = new_branch
+        return current_branch
 
     def merge_branch():
         merge_conflict = False
@@ -42,6 +42,29 @@ def manage_branch_workflow(new_branch):
 
         if merge_conflict:
             pass
+
+    allowed_actions_flag = True  ## the flag that controls access to perform the allowed_actions, by first checking if the inputs/parameters they need to perform their actions is provided
+
+    if (
+        not new_branch or not new_branch.strip()
+    ):  ## Catches None, empty string "", and empty collections || .strip() Catches "   " as empty
+        allowed_actions_flag = False
+
+    if allowed_actions_flag:
+        # call the functions, by first perfoming the mapping from the action to the functions.
+        function_mapping = {
+            "create": create_branch,
+            "delete": delete_branch,
+            "change": change_branch,
+            "merge": merge_branch,
+        }
+
+        if action.lower() == function_mapping[action]:
+            function_mapping[action](new_branch)
+        else:
+            response = "This action is not supported!, try following one from the docs"
+            print(response)
+            return response
 
 
 def config_git_user(user_email, user_name):
@@ -61,7 +84,7 @@ def config_git_user(user_email, user_name):
     print(git_account)
 
 
-def initialize_repo(repo_name, branch_name="main"):
+def initialize_repo(repo_name, branch_name):
     # then let's initialize a repo (an empty one or existing one)
     gitRepo = subprocess.run(["git", "init"], capture_output=True, text=True)
     print(gitRepo)
@@ -70,7 +93,7 @@ def initialize_repo(repo_name, branch_name="main"):
 # know the difference between local and remote workflows areas
 
 
-def workflows(workflow_tree, staged, committed, branch_name="main"):
+def git_workflows(workflow_tree, staged, committed, branch_name):
     # starting with the local workflow area
     # there are three working areas in git
     # 1. the working tree (which consists of untracked files, if not commited before)
@@ -79,9 +102,9 @@ def workflows(workflow_tree, staged, committed, branch_name="main"):
     #   1.2 write this into it `This is the content of my first file.`
 
     # we have a check here if the change we made is wrong or we want to undo it before it's staged, we can do so using the command:
-    reverse_options = ["checkout", "restore"]
+    # reverse_options = ["checkout", "restore"]
     checkoutResult = subprocess.run(
-        ["git", "checkout or restore (from reverse_options)", "filename"],
+        ["git", "checkout", "filename"],
         capture_output=True,
         text=True,
     )
@@ -116,12 +139,15 @@ def workflows(workflow_tree, staged, committed, branch_name="main"):
 # and if you want to see your commit history, you can also do that by running `git log`
 
 
-def diff(branch_name="main"):
+def diff(old_file, new_file, branch_name):
+    # demo check between the two file
+    print(old_file, new_file)
     # Now first check the changes between files (using diff)'
     diffChanges = subprocess.run(
         ["git", "diff", "file_name"], capture_output=True, text=True
     )
     print(diffChanges)
+    return diffChanges
 
 
 # Now that's some of the basics of git'.
