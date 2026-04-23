@@ -29,6 +29,7 @@ def manage_branch_workflow():
         pass
 
     def merge_branch():
+        types_of_merges = ["fast forward", "three way merge"]
         pass
 
 
@@ -67,8 +68,11 @@ def workflows(workflow_tree, staged, committed, branch_name="main"):
     #   1.2 write this into it `This is the content of my first file.`
 
     # we have a check here if the change we made is wrong or we want to undo it before it's staged, we can do so using the command:
+    reverse_options = ["checkout", "restore"]
     checkoutResult = subprocess.run(
-        ["git", "checkout", "filename"], capture_output=True, text=True
+        ["git", "checkout or restore (from reverse_options)", "filename"],
+        capture_output=True,
+        text=True,
     )
     print(checkoutResult)
     # If there's no issue, then we can stage it if it's correct.
