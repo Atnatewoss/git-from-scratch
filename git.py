@@ -69,4 +69,3 @@ print(diffChanges)
 # to do that we add the `a-flag` when commiting, 'subprocess.run(["git", "commit", "-a", "-m", "this is the change where i skipped staging"], text=True)'
 
 # What if we want to revert it after we commited it, then we'd use the `subprocess.run(["git", "revert", "HEAD (the latest commit)"], text=True)
-#
