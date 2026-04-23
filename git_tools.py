@@ -7,6 +7,30 @@ list_of_commands = [
     # list all of the commmands used in the tools here, to track them as a check list
 ]
 
+list_of_branches = ["main"]
+
+
+def manage_branch_workflow():
+    default_branch = "main"
+    allowed_actions = [
+        "create branch",
+        "change branch",
+        "delete branch",
+        "merge branch",
+    ]
+
+    def create_branch():
+        pass
+
+    def change_branch():
+        pass
+
+    def delete_branch():
+        pass
+
+    def merge_branch():
+        pass
+
 
 def config_git_user(user_email, user_name):
     # first let's set up our account into git config to let it know who is making the changes
@@ -25,7 +49,7 @@ def config_git_user(user_email, user_name):
     print(git_account)
 
 
-def initialize_repo(repo_name):
+def initialize_repo(repo_name, branch_name="main"):
     # then let's initialize a repo (an empty one or existing one)
     gitRepo = subprocess.run(["git", "init"], capture_output=True, text=True)
     print(gitRepo)
@@ -34,7 +58,7 @@ def initialize_repo(repo_name):
 # know the difference between local and remote workflows areas
 
 
-def workflows(workflow_tree, staged, committed):
+def workflows(workflow_tree, staged, committed, branch_name="main"):
     # starting with the local workflow area
     # there are three working areas in git
     # 1. the working tree (which consists of untracked files, if not commited before)
@@ -77,7 +101,7 @@ def workflows(workflow_tree, staged, committed):
 # and if you want to see your commit history, you can also do that by running `git log`
 
 
-def diff():
+def diff(branch_name="main"):
     # Now first check the changes between files (using diff)'
     diffChanges = subprocess.run(
         ["git", "diff", "file_name"], capture_output=True, text=True
