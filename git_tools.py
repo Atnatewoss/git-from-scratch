@@ -21,7 +21,7 @@ def config_git_user(user_email, user_name):
     print(git_account)
 
 
-def initialize_repo():
+def initialize_repo(repo_name):
     # then let's initialize a repo (an empty one or existing one)
     gitRepo = subprocess.run(["git", "init"], capture_output=True, text=True)
     print(gitRepo)

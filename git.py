@@ -1,4 +1,4 @@
-from git_tools.py import branches, config_git_user, diff, initialize_repo, workflows
+from git_tools import config_git_user, diff, initialize_repo, workflows
 
 
 class Git:
@@ -17,4 +17,4 @@ class Git:
     initialize_repo = initialize_repo(repo_name)
     workflows = workflows(workflow_tree=True, staged=True, committed=True)
     diff = diff()
-    branches = branches()
+    # branches = branches()
