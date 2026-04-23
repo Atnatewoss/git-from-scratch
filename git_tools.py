@@ -3,6 +3,10 @@ import subprocess
 # Pre-requisite: make sure you have git installed
 # check by opening your terminal and typing `git --version`
 
+list_of_commands = [
+    # list all of the commmands used in the tools here, to track them as a check list
+]
+
 
 def config_git_user(user_email, user_name):
     # first let's set up our account into git config to let it know who is making the changes
