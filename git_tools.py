@@ -8,24 +8,27 @@ list_of_commands = [
 ]
 
 list_of_branches = ["main"]
+# default_branch = "main"
 
 
-def manage_branch_workflow():
-    default_branch = "main"
+def manage_branch_workflow(new_branch):
     allowed_actions = [
-        "create branch",
-        "change branch",
-        "delete branch",
-        "merge branch",
+        "create branch",  ## from the parameter passed in
+        "delete branch",  ## from the list_of_branches
+        "change branch",  ## from the list_of_branches
+        "merge branch",  ## from the list_of_branches
     ]
 
-    def create_branch():
+    def create_branch(new_branch):
+        if not new_branch:  ## Catches None, empty string "", and empty collections
+            print("No new branch passed!")
+
+        list_of_branches.append(new_branch)
+
+    def delete_branch():
         pass
 
     def change_branch():
-        pass
-
-    def delete_branch():
         pass
 
     def merge_branch():
