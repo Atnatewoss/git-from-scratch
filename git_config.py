@@ -4,9 +4,21 @@ workflow_tree = True
 staged = True
 committed = True
 
+# stream setup (local (downstream) and remote (upstream) `-u`)
+stream = "local"
+
 # branch workflow setup
 default_branch = "main"
-list_of_branches = [default_branch]
+
+local_branches = [default_branch]
+remote_branches = [default_branch]
+
+# If stream is local
+if stream == "local":
+    list_of_branches = local_branches
+elif stream == "remote":
+    # If stream is remote
+    list_of_branches = remote_branches
 
 # new branch
 new_branch = "new branch"
