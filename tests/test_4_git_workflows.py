@@ -1,4 +1,4 @@
-from git_tools import git_workflows
+from tools import git_workflows
 
 
 class Git:

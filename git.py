@@ -13,7 +13,7 @@ from git_config import (
     user_name,
     workflow_tree,
 )
-from git_tools import (
+from tools import (
     config_git_user,
     diff,
     git_workflows,

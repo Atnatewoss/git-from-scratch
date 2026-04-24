@@ -1,4 +1,4 @@
-from git_tools import config_git_user
+from tools import config_git_user
 
 
 class Git:

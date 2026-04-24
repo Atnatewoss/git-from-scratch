@@ -1,4 +1,4 @@
-from git_tools import initialize_repo
+from tools import initialize_repo
 
 
 class Git:

@@ -1,4 +1,4 @@
-from git_tools import diff
+from tools import diff
 
 
 class Git:
